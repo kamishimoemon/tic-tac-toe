@@ -2,13 +2,16 @@
 
 declare(strict_types=1);
 
-use PHPUnit\Framework\TestCase;
+require_once(__DIR__ . '/TicTacToeTestCase.php');
+
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Kamishimoemon\TicTacToe\Mark;
 use Kamishimoemon\TicTacToe\Space;
+use Kamishimoemon\TicTacToe\SpaceListener;
+use Kamishimoemon\TicTacToe\InvalidMove;
 
-class MarksArePlacedIntoSpacesTest extends TestCase
+class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 {
 	#[Test]
 	#[DataProvider('marks')]
@@ -16,16 +19,38 @@ class MarksArePlacedIntoSpacesTest extends TestCase
 	{
 		$space = new Space();
 
-		$space->onMark(fn($m) => $this->assertSame($mark, $m));
+		$listener = $this->createMock(SpaceListener::class);
+		$listener->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
 
+		$space->addListener($listener);
 		$mark->mark($space);
 	}
 
-	public static function marks (): array
+	#[Test]
+	#[DataProvider('marks')]
+	function spacesCanGetMarkedOnlyOneTime (Mark $mark): void
 	{
-		return [
-			'X' => [Mark::X()],
-			'O' => [Mark::O()],
-		];
+		$this->expectException(InvalidMove::class);
+		$space = new Space();
+		$mark->mark($space);
+		$mark->mark($space);
+	}
+
+	#[Test]
+	#[DataProvider('marks')]
+	function spacesShouldNotifyOnlyTheFirtTimeTheyGetMarked (Mark $mark): void
+	{
+		$space = new Space();
+
+		$listener = $this->createMock(SpaceListener::class);
+		$listener->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
+
+		$space->addListener($listener);
+		$mark->mark($space);
+
+		try {
+			$mark->mark($space);
+		}
+		catch (InvalidMove $ime) {}
 	}
 }
