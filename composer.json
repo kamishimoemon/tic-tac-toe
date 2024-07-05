@@ -1,21 +1,24 @@
 {
-    "name": "kamishimoemon/tic-tac-toe",
-    "description": "A tic-tac-toe game engine",
-    "type": "project",
-    "require-dev": {
-        "phpunit/phpunit": "^11.2"
-    },
-    "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Kamishimoemon\\TicTacToe\\": "src/"
-        }
-    },
-    "authors": [
-        {
-            "name": "Darío Candotti",
-            "email": "dario.candotti@gmail.com"
-        }
-    ],
-    "require": {}
+	"name": "kamishimoemon/tic-tac-toe",
+	"description": "A tic-tac-toe game engine",
+	"type": "project",
+	"authors": [
+		{
+			"name": "Darío Candotti",
+			"email": "dario.candotti@gmail.com"
+		}
+	],
+	"require": {},
+	"require-dev": {
+		"phpunit/phpunit": "^11.2"
+	},
+	"autoload": {
+		"psr-4": {
+			"Kamishimoemon\\TicTacToe\\": "src/"
+		}
+	},
+	"scripts": {
+		"test": "./vendor/bin/phpunit test --testdox --color"
+	},
+	"license": "MIT"
 }
