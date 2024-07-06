@@ -4,19 +4,14 @@ declare(strict_types=1);
 
 namespace Kamishimoemon\TicTacToe;
 
-/**
- * @todo: remove this
- */
-use function call_user_func;
-
 class Space
 {
 	private bool $marked = false;
-	private array $listeners = [];
+	private array $rows = [];
 
-	public function addListener (SpaceListener $listener): void
+	public function attach (Row $row): void
 	{
-		$this->listeners[] = $listener;
+		$this->rows[] = $row;
 	}
 
 	public function mark (Mark $mark): void
@@ -26,8 +21,8 @@ class Space
 		}
 
 		$this->marked = true;
-		foreach ($this->listeners as $listener) {
-			$listener->spaceMarked($this, $mark);
+		foreach ($this->rows as $row) {
+			$row->spaceMarked($this, $mark);
 		}
 	}
 }

@@ -10,7 +10,7 @@ use PHPUnit\Framework\Attributes\DataProvider;
 use Kamishimoemon\TicTacToe\Mark;
 use Kamishimoemon\TicTacToe\Space;
 use Kamishimoemon\TicTacToe\Row;
-use Kamishimoemon\TicTacToe\RowListener;
+use Kamishimoemon\TicTacToe\Grid;
 
 class RowsGetCompletedOrNotTest extends TicTacToeTestCase
 {
@@ -18,14 +18,13 @@ class RowsGetCompletedOrNotTest extends TicTacToeTestCase
 	#[DataProvider('marks')]
 	function rowsGetCompletedWhenAllTheirSpacesGetMarkedWithTheSameMark (Mark $mark): void
 	{
+		$grid = $this->createMock(Grid::class);
 		$space1 = new Space();
 		$space2 = new Space();
 		$space3 = new Space();
-		$row = new Row($space1, $space2, $space3);
+		$row = new Row($grid, $space1, $space2, $space3);
 
-		$listener = $this->createMock(RowListener::class);
-		$listener->expects($this->once())->method('rowCompleted')->with($this->identicalTo($row));
-		$row->addListener($listener);
+		$grid->expects($this->once())->method('rowCompleted')->with($this->identicalTo($row), $this->identicalTo($mark));
 
 		$mark->mark($space1);
 		$mark->mark($space2);
@@ -36,14 +35,13 @@ class RowsGetCompletedOrNotTest extends TicTacToeTestCase
 	#[DataProvider('allMarksUncompletedCombinations')]
 	function rowsDoNotGetCompletedWhenTheirSpacesGetMarkedWithDifferentMarks (Mark $mark1, Mark $mark2, Mark $mark3): void
 	{
+		$grid = $this->createMock(Grid::class);
 		$space1 = new Space();
 		$space2 = new Space();
 		$space3 = new Space();
-		$row = new Row($space1, $space2, $space3);
+		$row = new Row($grid, $space1, $space2, $space3);
 
-		$listener = $this->createMock(RowListener::class);
-		$listener->expects($this->never())->method('rowCompleted');
-		$row->addListener($listener);
+		$grid->expects($this->never())->method('rowCompleted');
 
 		$mark1->mark($space1);
 		$mark2->mark($space2);

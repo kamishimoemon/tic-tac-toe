@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Kamishimoemon\TicTacToe\Mark;
 use Kamishimoemon\TicTacToe\Space;
-use Kamishimoemon\TicTacToe\SpaceListener;
+use Kamishimoemon\TicTacToe\Row;
 use Kamishimoemon\TicTacToe\InvalidMove;
 
 class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
@@ -19,10 +19,10 @@ class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 	{
 		$space = new Space();
 
-		$listener = $this->createMock(SpaceListener::class);
-		$listener->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
+		$row = $this->createMock(Row::class);
+		$row->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
 
-		$space->addListener($listener);
+		$space->attach($row);
 		$mark->mark($space);
 	}
 
@@ -42,10 +42,10 @@ class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 	{
 		$space = new Space();
 
-		$listener = $this->createMock(SpaceListener::class);
-		$listener->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
+		$row = $this->createMock(Row::class);
+		$row->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
 
-		$space->addListener($listener);
+		$space->attach($row);
 		$mark->mark($space);
 
 		try {

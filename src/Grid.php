@@ -6,8 +6,8 @@ namespace Kamishimoemon\TicTacToe;
 
 class Grid
 {
-	public function __construct ()
+	public function rowCompleted (Row $row, Mark $mark): void
 	{
-		
+
 	}
 }
