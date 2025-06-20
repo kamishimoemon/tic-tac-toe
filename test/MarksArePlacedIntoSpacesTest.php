@@ -6,10 +6,10 @@ require_once(__DIR__ . '/TicTacToeTestCase.php');
 
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Kamishimoemon\TicTacToe\Mark;
-use Kamishimoemon\TicTacToe\Space;
-use Kamishimoemon\TicTacToe\Row;
-use Kamishimoemon\TicTacToe\InvalidMove;
+use TicTacToe\Mark;
+use TicTacToe\Space;
+use TicTacToe\Row;
+use TicTacToe\InvalidMove;
 
 class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 {

@@ -7,10 +7,10 @@ require_once(__DIR__ . '/TicTacToeTestCase.php');
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Kamishimoemon\TicTacToe\Mark;
-use Kamishimoemon\TicTacToe\Space;
-use Kamishimoemon\TicTacToe\Row;
-use Kamishimoemon\TicTacToe\Grid;
+use TicTacToe\Mark;
+use TicTacToe\Space;
+use TicTacToe\Row;
+use TicTacToe\Grid;
 
 class RowsGetCompletedOrNotTest extends TicTacToeTestCase
 {
