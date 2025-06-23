@@ -7,11 +7,11 @@ namespace TicTacToe;
 class Space
 {
 	private bool $marked = false;
-	private array $rows = [];
+	private array $lines = [];
 
-	public function attach (Row $row): void
+	public function attach (Line $line): void
 	{
-		$this->rows[] = $row;
+		$this->lines[] = $line;
 	}
 
 	public function mark (Mark $mark): void
@@ -21,8 +21,8 @@ class Space
 		}
 
 		$this->marked = true;
-		foreach ($this->rows as $row) {
-			$row->spaceMarked($this, $mark);
+		foreach ($this->lines as $line) {
+			$line->spaceMarked($this, $mark);
 		}
 	}
 }

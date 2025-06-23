@@ -6,7 +6,7 @@ namespace TicTacToe;
 
 class Grid
 {
-	public function rowCompleted (Row $row, Mark $mark): void
+	public function lineCompleted (Line $line, Mark $mark): void
 	{
 
 	}

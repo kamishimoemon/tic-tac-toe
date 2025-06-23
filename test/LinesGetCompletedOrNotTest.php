@@ -9,22 +9,22 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use TicTacToe\Mark;
 use TicTacToe\Space;
-use TicTacToe\Row;
+use TicTacToe\Line;
 use TicTacToe\Grid;
 
-class RowsGetCompletedOrNotTest extends TicTacToeTestCase
+class LinesGetCompletedOrNotTest extends TicTacToeTestCase
 {
 	#[Test]
 	#[DataProvider('marks')]
-	function rowsGetCompletedWhenAllTheirSpacesGetMarkedWithTheSameMark (Mark $mark): void
+	function linesGetCompletedWhenAllTheirSpacesGetMarkedWithTheSameMark (Mark $mark): void
 	{
 		$grid = $this->createMock(Grid::class);
 		$space1 = new Space();
 		$space2 = new Space();
 		$space3 = new Space();
-		$row = new Row($grid, $space1, $space2, $space3);
+		$line = new Line($grid, $space1, $space2, $space3);
 
-		$grid->expects($this->once())->method('rowCompleted')->with($this->identicalTo($row), $this->identicalTo($mark));
+		$grid->expects($this->once())->method('lineCompleted')->with($this->identicalTo($line), $this->identicalTo($mark));
 
 		$mark->mark($space1);
 		$mark->mark($space2);
@@ -33,15 +33,15 @@ class RowsGetCompletedOrNotTest extends TicTacToeTestCase
 
 	#[Test]
 	#[DataProvider('allMarksUncompletedCombinations')]
-	function rowsDoNotGetCompletedWhenTheirSpacesGetMarkedWithDifferentMarks (Mark $mark1, Mark $mark2, Mark $mark3): void
+	function linesDoNotGetCompletedWhenTheirSpacesGetMarkedWithDifferentMarks (Mark $mark1, Mark $mark2, Mark $mark3): void
 	{
 		$grid = $this->createMock(Grid::class);
 		$space1 = new Space();
 		$space2 = new Space();
 		$space3 = new Space();
-		$row = new Row($grid, $space1, $space2, $space3);
+		$line = new Line($grid, $space1, $space2, $space3);
 
-		$grid->expects($this->never())->method('rowCompleted');
+		$grid->expects($this->never())->method('lineCompleted');
 
 		$mark1->mark($space1);
 		$mark2->mark($space2);

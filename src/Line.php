@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace TicTacToe;
 
-class Row
+class Line
 {
 	private Grid $grid;
 	private int $x = 0;
@@ -31,6 +31,6 @@ class Row
 
 	private function completed (Mark $mark): void
 	{
-		$this->grid->rowCompleted($this, $mark);
+		$this->grid->lineCompleted($this, $mark);
 	}
 }

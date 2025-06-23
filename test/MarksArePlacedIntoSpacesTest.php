@@ -8,7 +8,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use TicTacToe\Mark;
 use TicTacToe\Space;
-use TicTacToe\Row;
+use TicTacToe\Line;
 use TicTacToe\InvalidMove;
 
 class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
@@ -19,10 +19,10 @@ class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 	{
 		$space = new Space();
 
-		$row = $this->createMock(Row::class);
-		$row->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
+		$line = $this->createMock(Line::class);
+		$line->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
 
-		$space->attach($row);
+		$space->attach($line);
 		$mark->mark($space);
 	}
 
@@ -42,10 +42,10 @@ class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 	{
 		$space = new Space();
 
-		$row = $this->createMock(Row::class);
-		$row->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
+		$line = $this->createMock(Line::class);
+		$line->expects($this->once())->method('spaceMarked')->with($this->identicalTo($space), $this->identicalTo($mark));
 
-		$space->attach($row);
+		$space->attach($line);
 		$mark->mark($space);
 
 		try {
