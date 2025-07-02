@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/TicTacToeTestCase.php');
-
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use TicTacToe\Game;
 
-class NewGameTest extends TicTacToeTestCase
+class NewGameTest extends TestCase
 {
     #[Test]
     function NewGame (): void

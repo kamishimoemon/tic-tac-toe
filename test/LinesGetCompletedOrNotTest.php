@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/TicTacToeTestCase.php');
-
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -12,7 +10,7 @@ use TicTacToe\Space;
 use TicTacToe\Line;
 use TicTacToe\Grid;
 
-class LinesGetCompletedOrNotTest extends TicTacToeTestCase
+class LinesGetCompletedOrNotTest extends TestCase
 {
 	#[Test]
 	#[DataProvider('marks')]
@@ -46,6 +44,14 @@ class LinesGetCompletedOrNotTest extends TicTacToeTestCase
 		$mark1->mark($space1);
 		$mark2->mark($space2);
 		$mark3->mark($space3);
+	}
+
+	public static function marks (): array
+	{
+		return [
+			'X' => [Mark::X()],
+			'O' => [Mark::O()],
+		];
 	}
 
 	public static function allMarksUncompletedCombinations (): array

@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-require_once(__DIR__ . '/TicTacToeTestCase.php');
-
+use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use TicTacToe\Mark;
@@ -11,7 +10,7 @@ use TicTacToe\Space;
 use TicTacToe\Line;
 use TicTacToe\InvalidMove;
 
-class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
+class MarksArePlacedIntoSpacesTest extends TestCase
 {
 	#[Test]
 	#[DataProvider('marks')]
@@ -52,5 +51,13 @@ class MarksArePlacedIntoSpacesTest extends TicTacToeTestCase
 			$mark->mark($space);
 		}
 		catch (InvalidMove $ime) {}
+	}
+
+	public static function marks (): array
+	{
+		return [
+			'X' => [Mark::X()],
+			'O' => [Mark::O()],
+		];
 	}
 }
