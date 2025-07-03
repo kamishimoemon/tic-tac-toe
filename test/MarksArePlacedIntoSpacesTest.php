@@ -56,8 +56,8 @@ class MarksArePlacedIntoSpacesTest extends TestCase
 	public static function marks (): array
 	{
 		return [
-			'X' => [Mark::X()],
-			'O' => [Mark::O()],
+			'X' => [Mark::X],
+			'O' => [Mark::O],
 		];
 	}
 }

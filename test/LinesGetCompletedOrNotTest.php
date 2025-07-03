@@ -49,20 +49,20 @@ class LinesGetCompletedOrNotTest extends TestCase
 	public static function marks (): array
 	{
 		return [
-			'X' => [Mark::X()],
-			'O' => [Mark::O()],
+			'X' => [Mark::X],
+			'O' => [Mark::O],
 		];
 	}
 
 	public static function allMarksUncompletedCombinations (): array
 	{
 		return [
-			'XXO' => [Mark::X(), Mark::X(), Mark::O()],
-			'XOX' => [Mark::X(), Mark::O(), Mark::X()],
-			'OXX' => [Mark::O(), Mark::X(), Mark::X()],
-			'OOX' => [Mark::O(), Mark::O(), Mark::X()],
-			'OXO' => [Mark::O(), Mark::X(), Mark::O()],
-			'XOO' => [Mark::X(), Mark::O(), Mark::O()],
+			'XXO' => [Mark::X, Mark::X, Mark::O],
+			'XOX' => [Mark::X, Mark::O, Mark::X],
+			'OXX' => [Mark::O, Mark::X, Mark::X],
+			'OOX' => [Mark::O, Mark::O, Mark::X],
+			'OXO' => [Mark::O, Mark::X, Mark::O],
+			'XOO' => [Mark::X, Mark::O, Mark::O],
 		];
 	}
 }

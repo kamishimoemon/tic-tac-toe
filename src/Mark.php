@@ -4,61 +4,29 @@ declare(strict_types=1);
 
 namespace TicTacToe;
 
-abstract class Mark
+enum Mark
 {
-	public abstract function spaceMarked (Space $space, SpaceListener $listener): void;
-	public abstract function increment (int $x, int $o): array;
+	case X;
+	case O;
+
+	public function spaceMarked (Space $space, SpaceListener $listener): void
+	{
+		match ($this) {
+			self::X => $listener->spaceMarkedWithX($space, $this),
+			self::O => $listener->spaceMarkedWithO($space, $this),
+		};
+	}
+
+	public function increment (int $x, int $o): array
+	{
+		return match ($this) {
+			self::X => [$x + 1, $o],
+			self::O => [$x, $o + 1],
+		};
+	}
 
 	public function mark (Space $space): void
 	{
 		$space->mark($this);
-	}
-
-	public static final function X (): Mark
-	{
-		return X::new();
-	}
-
-	public static final function O (): Mark
-	{
-		return O::new();
-	}
-}
-
-class X extends Mark
-{
-	public function spaceMarked (Space $space, SpaceListener $listener): void
-	{
-		$listener->spaceMarkedWithX($space, $this);
-	}
-
-	public function increment (int $x, int $o): array
-	{
-		return [$x + 1, $o];
-	}
-
-	public static function new (): X
-	{
-		static $singleton = new X();
-		return $singleton;
-	}
-}
-
-class O extends Mark
-{
-	public function spaceMarked (Space $space, SpaceListener $listener): void
-	{
-		$listener->spaceMarkedWithO($space, $this);
-	}
-
-	public function increment (int $x, int $o): array
-	{
-		return [$x, $o + 1];
-	}
-
-	public static function new (): O
-	{
-		static $singleton = new O();
-		return $singleton;
 	}
 }
