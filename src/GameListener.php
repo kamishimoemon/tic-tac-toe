@@ -6,5 +6,5 @@ namespace TicTacToe;
 
 interface GameListener
 {
-    public function gameOver(Game $game): void;
+	public function gameOver (Game $game): void;
 }

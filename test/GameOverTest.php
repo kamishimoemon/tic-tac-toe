@@ -11,19 +11,19 @@ use TicTacToe\Position;
 
 class GameOverTest extends TestCase
 {
-    #[Test]
-    function notifiesDrawWhenNoMovesAvailable(): void
-    {
-        $game = Game::new();
+	#[Test]
+	function notifiesDrawWhenNoMovesAvailable (): void
+	{
+		$game = Game::new();
 
-        $listener = $this->createMock(GameListener::class);
-        $listener->expects($this->once())->method('gameOver')->with($this->identicalTo($game));
-        $game->attach($listener);
+		$listener = $this->createMock(GameListener::class);
+		$listener->expects($this->once())->method('gameOver')->with($this->identicalTo($game));
+		$game->attach($listener);
 
-        $mark = Mark::X;
-        foreach (Position::cases() as $position) {
-            $game->place($mark, $position);
-            $mark = $mark->not();
-        }
-    }
+		$mark = Mark::X;
+		foreach (Position::cases() as $position) {
+			$game->place($mark, $position);
+			$mark = $mark->not();
+		}
+	}
 }
