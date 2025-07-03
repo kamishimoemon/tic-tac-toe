@@ -9,6 +9,14 @@ enum Mark
 	case X;
 	case O;
 
+	public function not (): Mark
+	{
+		return match ($this) {
+			self::X => Mark::O,
+			self::O => Mark::X,
+		};
+	}
+
 	public function spaceMarked (Space $space, SpaceListener $listener): void
 	{
 		match ($this) {
