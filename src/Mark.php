@@ -17,6 +17,14 @@ enum Mark
 		};
 	}
 
+	public function validateTurn (Mark $mark): void
+	{
+		if ($this === $mark) {
+			throw new InvalidMove();
+		}
+	}
+
+
 	public function spaceMarked (Space $space, SpaceListener $listener): void
 	{
 		match ($this) {
