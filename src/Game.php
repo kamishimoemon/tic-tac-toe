@@ -10,6 +10,11 @@ class Game
 	private ?Mark $currentMark = null;
 	private array $listeners = [];
 
+	public function addGameListener (GameListener $listener): void
+	{
+		$this->listeners[] = $listener;
+	}
+
 	public function place (Mark $mark, Position $position): void
 	{
 		if ($this->currentMark !== null) {
@@ -26,11 +31,6 @@ class Game
 		if (count($this->spaces) === count(Position::cases())) {
 			$this->gameOver();
 		}
-	}
-
-	public function attach (GameListener $listener): void
-	{
-		$this->listeners[] = $listener;
 	}
 
 	private function gameOver (): void
