@@ -10,7 +10,7 @@ use TicTacToe\GameListener;
 use TicTacToe\Mark;
 use TicTacToe\Position;
 
-class GameOverTest extends TestCase
+class GameTiedTest extends TestCase
 {
 	#[Test]
 	#[DataProvider('marks')]
