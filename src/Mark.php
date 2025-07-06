@@ -45,4 +45,9 @@ enum Mark
 	{
 		$space->mark($this);
 	}
+
+	public function equals (Mark $mark): bool
+	{
+		return $this === $mark;
+	}
 }

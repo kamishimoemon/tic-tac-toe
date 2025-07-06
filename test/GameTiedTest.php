@@ -13,8 +13,8 @@ use TicTacToe\Position;
 class GameTiedTest extends TestCase
 {
 	#[Test]
-	#[DataProvider('marks')]
-	function notifiesDrawWhenNoMovesAvailable (Mark $initialMark): void
+	#[DataProvider('marksAndLosingLines')]
+	function notifiesDrawWhenNoMovesAvailable (Mark $initialMark, array $positions): void
 	{
 		$game = Game::new();
 
@@ -23,17 +23,25 @@ class GameTiedTest extends TestCase
 		$game->addGameListener($listener);
 
 		$mark = $initialMark;
-		foreach (Position::cases() as $position) {
+		foreach ($positions as $position) {
 			$game->place($mark, $position);
 			$mark = $mark->not();
 		}
 	}
 
-	public static function marks (): array
+	public static function marksAndLosingLines(): array
 	{
-		return [
-			'X' => [Mark::X],
-			'O' => [Mark::O],
+		$losingLines = [
+			'214365789' => [Position::TWO, Position::ONE, Position::FOUR, Position::THREE, Position::SIX, Position::FIVE, Position::SEVEN, Position::EIGHT, Position::NINE],
 		];
+
+		$values = [];
+		foreach (Mark::cases() as $mark) {
+			foreach ($losingLines as $lineName => $positions) {
+				$values[$mark->name . '@' . $lineName] = [$mark, $positions];
+			}
+		}
+
+		return $values;
 	}
 }

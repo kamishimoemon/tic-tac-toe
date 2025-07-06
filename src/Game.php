@@ -4,11 +4,18 @@ declare(strict_types=1);
 
 namespace TicTacToe;
 
+use TicTacToe\Game\Grid;
+
 class Game
 {
-	private array $spaces = [];
+	private Grid $grid;
 	private ?Mark $currentMark = null;
 	private array $listeners = [];
+
+	private function __construct ()
+	{
+		$this->grid = new Grid($this);
+	}
 
 	public function addGameListener (GameListener $listener): void
 	{
@@ -21,22 +28,22 @@ class Game
 			$this->currentMark->validateTurn($mark);
 		}
 
-		if (isset($this->spaces[$position->value])) {
-			throw new InvalidMove();
-		}
+		$this->grid->markSpace($mark, $position);
 
-		$this->spaces[$position->value] = $mark;
 		$this->currentMark = $mark;
-
-		if (count($this->spaces) === count(Position::cases())) {
-			$this->gameOver();
-		}
 	}
 
-	private function gameOver (): void
+	public function gridCompleted (): void
 	{
 		foreach ($this->listeners as $listener) {
 			$listener->gameOver($this);
+		}
+	}
+
+	public function lineCompleted (Mark $mark): void
+	{
+		foreach ($this->listeners as $listener) {
+			$listener->gameOver($this, $mark);
 		}
 	}
 
