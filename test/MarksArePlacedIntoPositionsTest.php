@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use TicTacToe\Mark;
 use TicTacToe\Position;
-use TicTacToe\Game;
+use TicTacToe\ClassicGame;
 use TicTacToe\InvalidMove;
 
 class MarksArePlacedIntoPositionsTest extends TestCase
@@ -16,7 +16,7 @@ class MarksArePlacedIntoPositionsTest extends TestCase
 	#[DataProvider('marksAndPositions')]
 	function aMarkCanBePlacedIntoAnyPositionOfANewGame (Mark $mark, Position $pos): void
 	{
-		$game = Game::new();
+		$game = ClassicGame::new();
 		$game->place($mark, $pos);
 		$this->assertTrue(true);
 	}
@@ -26,7 +26,7 @@ class MarksArePlacedIntoPositionsTest extends TestCase
 	function aMarkCanNotBePlacedIntoANonEmptyPosition (Mark $m1, Mark $m2, Position $pos): void
 	{
 		$this->expectException(InvalidMove::class);
-		$game = Game::new();
+		$game = ClassicGame::new();
 		$game->place($m1, $pos);
 		$game->place($m2, $pos);
 	}

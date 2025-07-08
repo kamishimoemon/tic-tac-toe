@@ -5,7 +5,7 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
-use TicTacToe\Game;
+use TicTacToe\ClassicGame;
 use TicTacToe\GameListener;
 use TicTacToe\Mark;
 use TicTacToe\Position;
@@ -16,7 +16,7 @@ class PlayerWinsTest extends TestCase
 	#[DataProvider('marksAndWinningLines')]
 	function notifiesGameOverWhenAPlayerCompletesALine (Mark $winningMark, Position $winningPosition1, Position $winningPosition2, Position $winningPosition3): void
 	{
-		$game = Game::new();
+		$game = ClassicGame::new();
 
 		$listener = $this->createMock(GameListener::class);
 		$listener->expects($this->once())->method('gameOver')->with($this->identicalTo($game), $this->identicalTo($winningMark));

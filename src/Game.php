@@ -6,13 +6,13 @@ namespace TicTacToe;
 
 use TicTacToe\Game\Grid;
 
-class Game
+abstract class Game
 {
 	private Grid $grid;
 	private ?Mark $currentMark = null;
 	private array $listeners = [];
 
-	private function __construct ()
+	protected function __construct ()
 	{
 		$this->grid = new Grid($this);
 	}
@@ -45,10 +45,5 @@ class Game
 		foreach ($this->listeners as $listener) {
 			$listener->gameOver($this, $mark);
 		}
-	}
-
-	public static function new (): Game
-	{
-		return new Game();
 	}
 }

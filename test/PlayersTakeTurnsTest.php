@@ -5,7 +5,7 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
-use TicTacToe\Game;
+use TicTacToe\ClassicGame;
 use TicTacToe\Mark;
 use TicTacToe\Position;
 use TicTacToe\InvalidMove;
@@ -16,7 +16,7 @@ class PlayersTakeTurnsTest extends TestCase
 	#[DataProvider('marksAndAllValidPositions')]
 	function playersCanPlaceOppositeMarksInTurn (Mark $mark, Position $p1, Position $p2): void
 	{
-		$game = Game::new();
+		$game = ClassicGame::new();
 		$game->place($mark, $p1);
 		$game->place($mark->not(), $p2);
 		$this->assertTrue(true);
@@ -28,7 +28,7 @@ class PlayersTakeTurnsTest extends TestCase
 	{
 		$this->expectException(InvalidMove::class);
 
-		$game = Game::new();
+		$game = ClassicGame::new();
 		$game->place($mark, $p1);
 		$game->place($mark, $p2);
 	}
