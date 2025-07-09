@@ -16,7 +16,7 @@ class MarksArePlacedIntoPositionsTest extends TestCase
 	#[DataProvider('marksAndPositions')]
 	function aMarkCanBePlacedIntoAnyPositionOfANewGame (Mark $mark, Position $pos): void
 	{
-		$game = ClassicGame::new();
+		$game = new ClassicGame();
 		$game->place($mark, $pos);
 		$this->assertTrue(true);
 	}
@@ -26,7 +26,7 @@ class MarksArePlacedIntoPositionsTest extends TestCase
 	function aMarkCanNotBePlacedIntoANonEmptyPosition (Mark $m1, Mark $m2, Position $pos): void
 	{
 		$this->expectException(InvalidMove::class);
-		$game = ClassicGame::new();
+		$game = new ClassicGame();
 		$game->place($m1, $pos);
 		$game->place($m2, $pos);
 	}

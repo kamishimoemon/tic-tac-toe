@@ -8,8 +8,8 @@ use TicTacToe\Game\Grid;
 
 class ClassicGame extends Game
 {
-	public static function new (): Game
+	public function __construct ()
 	{
-		return new ClassicGame();
+		parent::__construct();
 	}
 }

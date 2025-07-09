@@ -16,7 +16,7 @@ class PlayersTakeTurnsTest extends TestCase
 	#[DataProvider('marksAndAllValidPositions')]
 	function playersCanPlaceOppositeMarksInTurn (Mark $mark, Position $p1, Position $p2): void
 	{
-		$game = ClassicGame::new();
+		$game = new ClassicGame();
 		$game->place($mark, $p1);
 		$game->place($mark->not(), $p2);
 		$this->assertTrue(true);
@@ -28,7 +28,7 @@ class PlayersTakeTurnsTest extends TestCase
 	{
 		$this->expectException(InvalidMove::class);
 
-		$game = ClassicGame::new();
+		$game = new ClassicGame();
 		$game->place($mark, $p1);
 		$game->place($mark, $p2);
 	}

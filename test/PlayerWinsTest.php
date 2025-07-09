@@ -16,7 +16,7 @@ class PlayerWinsTest extends TestCase
 	#[DataProvider('marksAndWinningLines')]
 	function notifiesGameOverWhenAPlayerCompletesALine (Mark $winningMark, Position $winningPosition1, Position $winningPosition2, Position $winningPosition3): void
 	{
-		$game = ClassicGame::new();
+		$game = new ClassicGame();
 
 		$listener = $this->createMock(GameListener::class);
 		$listener->expects($this->once())->method('gameOver')->with($this->identicalTo($game), $this->identicalTo($winningMark));

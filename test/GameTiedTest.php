@@ -16,7 +16,7 @@ class GameTiedTest extends TestCase
 	#[DataProvider('marksAndLosingLines')]
 	function notifiesDrawWhenNoMovesAvailable (Mark $initialMark, array $positions): void
 	{
-		$game = ClassicGame::new();
+		$game = new ClassicGame();
 
 		$listener = $this->createMock(GameListener::class);
 		$listener->expects($this->once())->method('gameOver')->with($this->identicalTo($game));
