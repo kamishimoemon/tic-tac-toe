@@ -5,7 +5,7 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
-use TicTacToe\ClassicGame;
+use TicTacToe\Game\ClassicGame;
 use TicTacToe\GameListener;
 use TicTacToe\Mark;
 use TicTacToe\Position;

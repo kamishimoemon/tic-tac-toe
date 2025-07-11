@@ -7,7 +7,7 @@ use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use TicTacToe\Mark;
 use TicTacToe\Position;
-use TicTacToe\ClassicGame;
+use TicTacToe\Game\ClassicGame;
 use TicTacToe\InvalidMove;
 
 class MarksArePlacedIntoPositionsTest extends TestCase

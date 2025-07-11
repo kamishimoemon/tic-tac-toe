@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace TicTacToe;
+namespace TicTacToe\Game;
 
-use TicTacToe\Game\Grid;
+use TicTacToe\Game;
 
-class ClassicGame extends Game
+class DeathmatchGame extends Game
 {
 	public function __construct ()
 	{
