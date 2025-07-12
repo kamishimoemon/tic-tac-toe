@@ -10,8 +10,12 @@ use TicTacToe\Line;
 use TicTacToe\Mark;
 use TicTacToe\InvalidMove;
 
+require_once(__DIR__ . '/data_providers/marks.php');
+
 class SpacesNotifiesAttachedLinesWhenTest extends TestCase
 {
+	use MarksDataProvider;
+
 	#[Test]
 	#[DataProvider('marks')]
 	public function marked (Mark $mark): void
@@ -39,13 +43,5 @@ class SpacesNotifiesAttachedLinesWhenTest extends TestCase
 		$space->attach($line);
 
 		$space->unmark();
-	}
-
-	public static function marks (): array
-	{
-		return [
-			'X' => [Mark::X],
-			'O' => [Mark::O],
-		];
 	}
 }

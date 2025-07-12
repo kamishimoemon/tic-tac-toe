@@ -9,8 +9,12 @@ use TicTacToe\Space;
 use TicTacToe\Mark;
 use TicTacToe\InvalidMove;
 
+require_once(__DIR__ . '/data_providers/marks.php');
+
 class SpacesCannotBeMarkedTwiceTest extends TestCase
 {
+	use MarksDataProvider;
+
 	#[Test]
 	#[DataProvider('marks')]
 	public function withTheSameMark (Mark $mark): void
@@ -29,13 +33,5 @@ class SpacesCannotBeMarkedTwiceTest extends TestCase
 		$space = new Space();
 		$space->mark($mark);
 		$space->mark($mark->not());
-	}
-
-	public static function marks (): array
-	{
-		return [
-			'X' => [Mark::X],
-			'O' => [Mark::O],
-		];
 	}
 }
