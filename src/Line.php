@@ -29,6 +29,11 @@ class Line
 		}
 	}
 
+	public function spaceUnmarked (Space $space): void
+	{
+
+	}
+
 	private function completed (Mark $mark): void
 	{
 		$this->grid->lineCompleted($this, $mark);

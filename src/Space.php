@@ -7,6 +7,7 @@ namespace TicTacToe;
 class Space
 {
 	private bool $marked = false;
+	private ?Mark $mark = null;
 	private array $lines = [];
 
 	public function attach (Line $line): void
@@ -16,13 +17,25 @@ class Space
 
 	public function mark (Mark $mark): void
 	{
-		if ($this->marked) {
+		if ($this->mark !== null) {
 			throw new InvalidMove();
 		}
 
-		$this->marked = true;
+		$this->mark = $mark;
+
 		foreach ($this->lines as $line) {
 			$line->spaceMarked($this, $mark);
+		}
+	}
+
+	public function unmark (): void
+	{
+		if ($this->mark !== null) {
+			$this->mark = null;
+
+			foreach ($this->lines as $line) {
+				$line->spaceUnmarked($this);
+			}
 		}
 	}
 }
