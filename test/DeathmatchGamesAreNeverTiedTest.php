@@ -5,21 +5,21 @@ declare(strict_types=1);
 use PHPUnit\Framework\TestCase;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
-use TicTacToe\Game\ClassicGame;
+use TicTacToe\Game\DeathmatchGame;
 use TicTacToe\GameListener;
 use TicTacToe\Mark;
 use TicTacToe\Position;
 
-class GameTiedTest extends TestCase
+class DeathmatchGamesAreNeverTiedTest extends TestCase
 {
 	#[Test]
 	#[DataProvider('marksAndLosingLines')]
-	function notifiesDrawWhenNoMovesAvailable (Mark $initialMark, array $positions): void
+	function test (Mark $initialMark, array $positions): void
 	{
-		$game = new ClassicGame();
+		$game = new DeathmatchGame();
 
 		$listener = $this->createMock(GameListener::class);
-		$listener->expects($this->once())->method('gameOver')->with($this->identicalTo($game));
+		$listener->expects($this->never())->method('gameOver');
 		$game->addGameListener($listener);
 
 		$mark = $initialMark;
