@@ -40,6 +40,17 @@ class Space
 		$this->marked($mark);
 	}
 
+	public function unmark (): void
+	{
+		if ($this->mark !== null) {
+			$this->mark = null;
+
+			foreach ($this->lines as $line) {
+				$line->spaceUnmarked($this);
+			}
+		}
+	}
+
 	private function marked (Mark $mark): void
 	{
 		$this->grid->spaceMarked();

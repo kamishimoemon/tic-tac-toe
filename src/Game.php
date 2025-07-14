@@ -8,7 +8,7 @@ use TicTacToe\Game\Grid;
 
 abstract class Game
 {
-	private Grid $grid;
+	protected Grid $grid;
 	private ?Mark $currentMark = null;
 	private array $listeners = [];
 

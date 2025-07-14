@@ -47,6 +47,11 @@ class Grid
 		$this->spacesByPosition[$position->value]->mark($mark);
 	}
 
+	public function unmarkSpace (Position $position): void
+	{
+		$this->spacesByPosition[$position->value]->unmark();
+	}
+
 	public function spaceMarked (): void
 	{
 		foreach ($this->spacesByPosition as $space) {
