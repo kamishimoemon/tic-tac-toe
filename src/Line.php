@@ -6,25 +6,39 @@ namespace TicTacToe;
 
 class Line
 {
-	private Grid $grid;
+	private ?Grid $grid;
+	private int $total = 0;
 	private int $x = 0;
 	private int $o = 0;
 
-	public function __construct (Grid $grid, Space $space1, Space $space2, Space $space3)
+	public function __construct ()
+	{
+	}
+
+	public function setGrid (Grid $grid): void
 	{
 		$this->grid = $grid;
-		$space1->attach($this);
-		$space2->attach($this);
-		$space3->attach($this);
+	}
+
+	public function incrementTotal (): void
+	{
+		$this->total++;
+	}
+
+	public function incrementX (): void
+	{
+		$this->x++;
+	}
+
+	public function incrementO (): void
+	{
+		$this->o++;
 	}
 
 	public function spaceMarked (Space $space, Mark $mark): void
 	{
-		list($this->x, $this->o) = $mark->increment($this->x, $this->o);
-		if ($this->x == 3 && $this->o == 0) {
-			$this->completed($mark);
-		}
-		else if ($this->o == 3 && $this->x == 0) {
+		$mark->increment($this);
+		if ($this->x == $this->total || $this->o == $this->total) {
 			$this->completed($mark);
 		}
 	}

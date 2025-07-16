@@ -33,11 +33,11 @@ enum Mark
 		};
 	}
 
-	public function increment (int $x, int $o): array
+	public function increment (Line $line): void
 	{
-		return match ($this) {
-			self::X => [$x + 1, $o],
-			self::O => [$x, $o + 1],
+		match ($this) {
+			self::X => $line->incrementX(),
+			self::O => $line->incrementO(),
 		};
 	}
 

@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace TicTacToe;
 
-class Grid
+interface Grid
 {
-	public function lineCompleted (Line $line, Mark $mark): void
-	{
-
-	}
+	public function lineCompleted (Line $line, Mark $mark): void;
 }

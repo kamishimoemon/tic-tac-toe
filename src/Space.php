@@ -12,6 +12,7 @@ class Space
 
 	public function attach (Line $line): void
 	{
+		$line->incrementTotal();
 		$this->lines[] = $line;
 	}
 
