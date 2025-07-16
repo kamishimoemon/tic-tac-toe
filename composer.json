@@ -20,7 +20,7 @@
 		}
 	},
 	"scripts": {
-		"test": "./vendor/bin/phpunit test --testdox --color"
+		"test": "./vendor/bin/phpunit test --testdox --color --display-warnings"
 	},
 	"license": "MIT"
 }
