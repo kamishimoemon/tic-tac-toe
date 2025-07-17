@@ -6,5 +6,7 @@ namespace TicTacToe;
 
 interface Grid
 {
-	public function lineCompleted (Line $line, Mark $mark): void;
+	function spaceMarked (Space $space): void;
+	function spaceUnmarked (Space $space): void;
+	function lineCompleted (Line $line, Mark $mark): void;
 }

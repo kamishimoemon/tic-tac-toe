@@ -4,13 +4,25 @@ declare(strict_types=1);
 
 namespace TicTacToe;
 
+use TicTacToe\Grid\NullGrid;
+
 class Space
 {
-	private bool $marked = false;
+	private Grid $grid;
 	private ?Mark $mark = null;
 	private array $lines = [];
 
-	public function attach (Line $line): void
+	public function __construct ()
+	{
+		$this->grid = new NullGrid();
+	}
+
+	public function setGrid (Grid $grid): void
+	{
+		$this->grid = $grid;
+	}
+
+	public function attachLine (Line $line): void
 	{
 		$line->incrementTotal();
 		$this->lines[] = $line;
@@ -24,9 +36,7 @@ class Space
 
 		$this->mark = $mark;
 
-		foreach ($this->lines as $line) {
-			$line->spaceMarked($this, $mark);
-		}
+		$this->marked($mark);
 	}
 
 	public function unmark (): void
@@ -34,9 +44,23 @@ class Space
 		if ($this->mark !== null) {
 			$this->mark = null;
 
-			foreach ($this->lines as $line) {
-				$line->spaceUnmarked($this);
-			}
+			$this->unmarked();
+		}
+	}
+
+	private function marked (Mark $mark): void
+	{
+		$this->grid->spaceMarked($this);
+		foreach ($this->lines as $line) {
+			$line->spaceMarked($this, $mark);
+		}
+	}
+
+	private function unmarked (): void
+	{
+		$this->grid->spaceUnmarked($this);
+		foreach ($this->lines as $line) {
+			$line->spaceUnmarked($this);
 		}
 	}
 }

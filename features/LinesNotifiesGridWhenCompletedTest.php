@@ -23,7 +23,7 @@ class LinesNotifiesGridWhenCompletedTest extends TestCase
 		$line = new Line();
 
 		$space = new Space();
-		$space->attach($line);
+		$space->attachLine($line);
 
 		$grid = $this->createMock(Grid::class);
 		$grid->expects($this->once())->method('lineCompleted')->with($this->identicalTo($line), $this->identicalTo($mark));
