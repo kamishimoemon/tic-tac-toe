@@ -19,9 +19,9 @@ class SpacesCannotBeMarkedTwiceTest extends TestCase
 	#[DataProvider('marks')]
 	public function withTheSameMark (Mark $mark): void
 	{
-		$this->expectException(InvalidMove::class);
 		$space = new Space();
 		$space->mark($mark);
+		$this->expectException(InvalidMove::class);
 		$space->mark($mark);
 	}
 
@@ -29,9 +29,9 @@ class SpacesCannotBeMarkedTwiceTest extends TestCase
 	#[DataProvider('marks')]
 	public function withTheOppositeMark (Mark $mark): void
 	{
-		$this->expectException(InvalidMove::class);
 		$space = new Space();
 		$space->mark($mark);
+		$this->expectException(InvalidMove::class);
 		$space->mark($mark->not());
 	}
 }
