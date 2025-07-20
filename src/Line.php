@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace TicTacToe;
 
+use TicTacToe\Grid\NullGrid;
+
 /**
  * @todo: Crear pruebas unitarias para esta clase.
  */
 class Line
 {
-	/**
-	 * @todo: Inicializar $grid con una NullGrid y remover el ? del atributo.
-	 */
-	private ?Grid $grid;
+	private Grid $grid;
 	private int $total = 0;
 	private int $x = 0;
 	private int $o = 0;
 
 	public function __construct ()
 	{
+		$this->grid = new NullGrid();
 	}
 
 	public function setGrid (Grid $grid): void

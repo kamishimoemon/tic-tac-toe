@@ -32,4 +32,17 @@ class LinesNotifiesGridWhenCompletedTest extends TestCase
 
 		$space->mark($mark);
 	}
+
+	#[Test]
+	#[DataProvider('marks')]
+	public function withoutGrid (Mark $mark): void
+	{
+		$line = new Line();
+		$space = new Space();
+
+		$space->attachLine($line);
+
+		$space->mark($mark);
+		$this->assertTrue(true);
+	}
 }
