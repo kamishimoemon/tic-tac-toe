@@ -6,6 +6,9 @@ namespace TicTacToe;
 
 enum Mark
 {
+	/**
+	 * @todo: Agregar una tercera opcion: NONE (NullObject).
+	 */
 	case X;
 	case O;
 
