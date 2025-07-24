@@ -45,7 +45,7 @@ class MarksArePlacedIntoPositionsTest extends TestCase
 	public static function marksMarksAndPositions (): array
 	{
 		$values = [];
-		foreach (Mark::cases() as $mark) {
+		foreach (Mark::xo() as $mark) {
 			foreach (Position::cases() as $pos) {
 				$values[$mark->name.$mark->name.$pos->value] = [$mark, $mark, $pos];
 				$values[$mark->name.$mark->not()->name.$pos->value] = [$mark, $mark->not(), $pos];

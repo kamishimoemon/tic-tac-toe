@@ -29,7 +29,7 @@ trait MarksWithLosingLinesDataProvider
 		];
 
 		$values = [];
-		foreach (Mark::cases() as $mark) {
+		foreach (Mark::xo() as $mark) {
 			foreach ($losingLines as $lineName => $positions) {
 				$values[$mark->name . '@' . $lineName] = [$mark, $positions];
 			}

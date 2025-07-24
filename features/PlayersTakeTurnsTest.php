@@ -36,7 +36,7 @@ class PlayersTakeTurnsTest extends TestCase
 	public static function marksAndAllValidPositions (): array
 	{
 		$values = [];
-		foreach (Mark::cases() as $mark) {
+		foreach (Mark::xo() as $mark) {
 			foreach (Position::cases() as $p1) {
 				foreach (Position::cases() as $p2) {
 					if ($p1 !== $p2) {

@@ -11,6 +11,7 @@ enum Mark
 	 */
 	case X;
 	case O;
+	case NONE;
 
 	public function not (): Mark
 	{
@@ -52,5 +53,10 @@ enum Mark
 	public function equals (Mark $mark): bool
 	{
 		return $this === $mark;
+	}
+
+	public static function xo (): array
+	{
+		return [self::X, self::O];
 	}
 }
